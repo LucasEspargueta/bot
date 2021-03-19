@@ -1,3 +1,4 @@
+import os
 from discord.ext import commands
 
 client = commands.Bot(command_prefix=['cum '])
@@ -28,4 +29,4 @@ async def gangnamstyle(ctx):
 async def git(ctx):
    await ctx.send('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
 
-client.run('ODIyNTAyMTI3NjE5NjcwMDg2.YFTMzA.GQL5XXX2sF9dIhGi5suC4HxdubI')
+client.run(os.environ["token"])

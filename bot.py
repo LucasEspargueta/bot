@@ -4,6 +4,10 @@ from discord.ext import commands
 client = commands.Bot(command_prefix=['cum '])
 
 @client.event
+async def on_ready():
+    await client.change_presence(activity=discord.Game('Miauuu'))
+      
+@client.event
 async def on_message(msg):
    if msg.author == client.user:
       return

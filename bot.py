@@ -1,5 +1,6 @@
 import os
-from discord.ext import commands
+from discord.ext import 
+import discord
 
 client = commands.Bot(command_prefix=['cum '])
 

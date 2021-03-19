@@ -5,7 +5,7 @@ client = commands.Bot(command_prefix=['cum '])
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('Miauuu'))
+    await client.change_presence(activity=discord.Game('Pedro Ramalho'))
       
 @client.event
 async def on_message(msg):

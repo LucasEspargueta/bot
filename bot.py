@@ -13,11 +13,11 @@ async def on_message(msg):
       return
    if "pedro ramalho" in msg.content.lower():
       await msg.channel.send('Pedro Ramalho')
-   elif   "dababy" in msg.content.lower():
+   elif "dababy" in msg.content.lower():
       await msg.channel.send('DaBaby')
-   elif   "less go" in msg.content.lower():
+   elif "less go" in msg.content.lower():
       await msg.channel.send('https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg')
-   elif   "balta" in msg.content.lower():
+   elif "baIta" in msg.content.lower():
       await msg.channel.send('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
    await client.process_commands(msg)
 

@@ -13,6 +13,7 @@ async def on_message(msg):
       return
    if "pedro ramalho" in msg.content.lower():
       await msg.channel.send('Pedro Ramalho')
+      await msg.channel.send('https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')
    elif "dababy" in msg.content.lower():
       await msg.channel.send('DaBaby')
    elif "less go" in msg.content.lower():

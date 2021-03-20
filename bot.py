@@ -39,4 +39,8 @@ async def gangnamstyle(ctx):
 async def git(ctx):
    await ctx.send('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
 
+@bot.command()
+async def ramalho(ctx):
+    await ctx.send("Pedro Ramalho", tts=True)
+
 client.run(os.environ["token"])

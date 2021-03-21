@@ -14,7 +14,7 @@ async def on_message(msg):
    if msg.author == client.user:
       return
    if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
-      await msg.channel.send('bro tá calado pf :neutral_face:')
+      await msg.channel.send('among us', tts=True)
    if "pedro ramalho" in msg.content.lower():
       await msg.channel.send('Pedro Ramalho', tts=True)
       await msg.channel.send('https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')

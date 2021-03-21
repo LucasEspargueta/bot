@@ -13,6 +13,8 @@ async def on_ready():
 async def on_message(msg):
    if msg.author == client.user:
       return
+   if "woo" in msg.content.lower():
+      await msg.channel.send("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
    if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
       await msg.channel.send('among us', tts=True)
    if "pedro ramalho" in msg.content.lower():

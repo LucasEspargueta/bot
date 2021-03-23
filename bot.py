@@ -3,8 +3,9 @@ import re
 import random
 from discord.ext import commands
 import discord
+from pretty_help import PrettyHelp
 
-client = commands.Bot(command_prefix=['cum '])
+client = commands.Bot(command_prefix=['cum '], help_command=PrettyHelp())
 woo_regex = re.compile(r"woo+\b", flags=re.IGNORECASE)
 
 @client.event

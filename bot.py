@@ -13,7 +13,7 @@ async def on_ready():
       
 @client.event
 async def on_message(msg):
-   if msg.author == client.user:
+   if msg.author.bot:
       return
    if woo_regex.search(msg.content) is not None:
       await msg.channel.send("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")

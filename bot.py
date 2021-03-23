@@ -1,9 +1,11 @@
 import os
+import re
 import random
 from discord.ext import commands
 import discord
 
 client = commands.Bot(command_prefix=['cum '])
+woo_regex = re.compile(r"woo+\b", flags=re.IGNORECASE)
 
 @client.event
 async def on_ready():
@@ -13,7 +15,7 @@ async def on_ready():
 async def on_message(msg):
    if msg.author == client.user:
       return
-   if "woo" in msg.content.lower():
+   if woo_regex.search(msg.content) is not None:
       await msg.channel.send("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
    if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
       await msg.channel.send('among us')

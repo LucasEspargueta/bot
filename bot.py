@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 import time
 from pytz import timezone
+import asyncio
 
 client = commands.Bot(command_prefix="cum ")
 

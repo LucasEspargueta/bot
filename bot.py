@@ -19,22 +19,34 @@ global current_time
 
 
 async def toca():
+    voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
+    await voiceChannel.connect()
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
 
-    ydl_opts = {'format': 'bestaudio'}
+     ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info('https://www.youtube.com/watch?v=1A_poY1VkKo', download=False)
-        URL = info['formats'][0]['url']
-    voice = get(client.voice_clients)
-    voice.play(discord.FFmpegPCMAudio(URL))
-
-
+        ydl.download([https://www.youtube.com/watch?v=1A_poY1VkKo])
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            os.rename(file, "song.mp3")
+    voice.play(discord.FFmpegPCMAudio("song.mp3"))
+    
+    
 async def hora():
     await asyncio.sleep(1)
     while True:
         now = datetime.now(timezone('UTC'))
         current_time = now.strftime("%H:%M:%S")
         await asyncio.sleep(1)
-        if current_time == '23:15:00':
+        if current_time == '23:30:30':
             canalvoz = client.get_channel(759884692219625493)
             canaltexto = client.get_channel(759882556744663040)
             await canaltexto.send('HORA DA ALTERNA :clock11: ')

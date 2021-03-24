@@ -23,14 +23,7 @@ async def toca():
     await voiceChannel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
 
-     ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
+     ydl_opts = {'format': 'bestaudio/best', 'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': '192',}]}
     
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([https://www.youtube.com/watch?v=1A_poY1VkKo])
@@ -46,7 +39,7 @@ async def hora():
         now = datetime.now(timezone('UTC'))
         current_time = now.strftime("%H:%M:%S")
         await asyncio.sleep(1)
-        if current_time == '23:30:30':
+        if current_time == '23:32:30':
             canalvoz = client.get_channel(759884692219625493)
             canaltexto = client.get_channel(759882556744663040)
             await canaltexto.send('HORA DA ALTERNA :clock11: ')

@@ -30,9 +30,9 @@ async def hora():
         current_time = now.strftime("%H:%M:%S")
         time.sleep(1)
         if current_time == '23:15:00':
-            canalvoz = client.get_channel(655826315777146909)
-            canaltexto = client.get_channel(822774646981263360)
-            await canaltexto.send('HORA DA ALTERNA :clock11: ')
+            canalvoz = client.get_channel(759884692219625493)
+            canaltexto = client.get_channel(759882556744663040)
+            await canaltexto.send('@here HORA DA ALTERNA :clock11: ')
             await canalvoz.connect()
             time.sleep(3)
             await toca()

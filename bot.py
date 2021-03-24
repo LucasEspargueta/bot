@@ -24,21 +24,22 @@ async def toca():
     voice.play(discord.FFmpegPCMAudio(URL))
 
 async def hora():
-    time.sleep(1)
+    asyncio.sleep(1)
     while True:
         now = datetime.now(timezone('UTC'))
         current_time = now.strftime("%H:%M:%S")
-        time.sleep(1)
+        asyncio.sleep(3)
         if current_time == '23:15:00':
             canalvoz = client.get_channel(759884692219625493)
             canaltexto = client.get_channel(759882556744663040)
             await canaltexto.send('HORA DA ALTERNA :clock11: ')
             await canalvoz.connect()
-            time.sleep(3)
+            asyncio.sleep(3)
             await toca()
 
 @client.event
 async def on_ready():
     await hora()
 
+client.loop.create_task(hora())
 client.run(os.environ["token"])

@@ -34,7 +34,7 @@ async def hora():
         now = datetime.now(timezone('UTC'))
         current_time = now.strftime("%H:%M:%S")
         await asyncio.sleep(1)
-        if current_time == '17:56:10':
+        if current_time == '18:41:10':
             canalvoz = client.get_channel(655826315777146909)
             canaltexto = client.get_channel(822774646981263360)
             await canaltexto.send('HORA DA ALTERNA :clock11: ')

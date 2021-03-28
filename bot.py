@@ -10,7 +10,7 @@ import asyncio
 
 client = commands.Bot(command_prefix="!")
 global voice
-now = datetime.now(timezone('UTC'))
+now = datetime.now(timezone('BST'))
 t = time.localtime()
 global current_time
 
@@ -26,7 +26,7 @@ async def toca():
 async def hora():
     await asyncio.sleep(1)
     while True:
-        now = datetime.now(timezone('UTC'))
+        now = datetime.now(timezone('BST'))
         current_time = now.strftime("%H:%M:%S")
         await asyncio.sleep(1)
         if current_time == '23:15:00':

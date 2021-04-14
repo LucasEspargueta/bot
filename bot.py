@@ -33,7 +33,7 @@ async def hora():
         current_time = now.strftime("%H:%M:%S")
         await asyncio.sleep(1)
         if current_time == '23:15:00':
-            canalvoz = client.get_channel(759880326985154600)
+            canalvoz = client.get_channel(759884692219625493)
             canaltexto = client.get_channel(759882556744663040)
             await asyncio.sleep(1)
             await canaltexto.send(':clock11: HORA DA ALTERNA :clock11: \n' 'https://cdn.discordapp.com/attachments/759882556744663040/824573836468158484/booba.png')

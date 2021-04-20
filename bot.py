@@ -2,6 +2,7 @@ import random
 from discord.ext import commands
 from pretty_help import PrettyHelp
 import discord
+import os
 
 client = commands.Bot(command_prefix=['gimme '], help_command=PrettyHelp())
 @client.event

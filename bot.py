@@ -35,8 +35,8 @@ async def on_message(msg):
       await msg.channel.send("Let's go - DaBaby")
       await msg.channel.send('https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg')
    elif "balta" in msg.content.lower():
-      num = random.randint(0, 2)
-      if num == 1:
+      num = random.randint(0, 1000000)
+      if num == 69420:
         await msg.channel.send('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
         print('racismo')
    await client.process_commands(msg)

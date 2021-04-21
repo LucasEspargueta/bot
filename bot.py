@@ -20,7 +20,7 @@ async def link(ctx):
 
 @client.event
 async def on_message(msg):
-   if msg.author.id = 74434231882747904:
+   if msg.author.id = 192235561371697152:
       await msg.channel.send("Tony")
    if msg.author == client.user:
       return

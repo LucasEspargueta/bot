@@ -3,8 +3,43 @@ from discord.ext import commands
 from pretty_help import PrettyHelp
 import discord
 import os
+import time
+from datetime import datetime
+from pytz import timezone
+import asyncio
 
 client = commands.Bot(command_prefix=['gimme '], help_command=PrettyHelp())
+now = datetime.now(timezone('Europe/Lisbon'))
+current_time = now.strftime("%H:%M:%S")
+
+TIMEZONES = {
+	"GMTM12": "Pacific/Auckland",
+    "GMT": "Etc/GMT",
+    "GMTM10": "Etc/GMT+10",
+    "GMTP13": "US/Samoa",
+    "TUGA": "Europe/Lisbon",
+    "GMTM9": "Etc/GMT+9",
+    "GMTM8": "US/Alaska",
+    "GMTM7": "Etc/GMT+7",
+    "GMTM6": "Etc/GMT+6",
+    "GMTM5": "Etc/GMT+5",
+    "GMTM4": "Etc/GMT+4",
+    "GMTM3": "Etc/GMT+3",
+    "GMTM2": "Etc/GMT+2",
+    "GMTM1": "Etc/GMT+1",
+    "GMTP2": "Europe/Madrid",
+    "GMTP3": "Europe/Helsinki",
+    "GMTP4": "Asia/Dubai",
+    "GMTP5": "Asia/Karachi",
+    "GMTP6": "Asia/Dhaka",
+    "GMTP7": "Asia/Bangkok",
+    "GMTP8": "Asia/Hong_Kong",
+    "GMTP9": "Asia/Tokyo",
+    "GMTP10": "Australia/Sydney",
+    "GMTP11": "Asia/Magadan",
+    "GMTP12": "Pacific/Auckland"
+}
+
 @client.event
 async def on_ready():
     print('Vim-me!')
@@ -17,6 +52,15 @@ async def link(ctx):
              "s", "t", "u", "v", "x", "y", "z",
              "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     await ctx.send("https://prnt.sc/" + "".join(list(random.choices(lista, k=6))))
+    
+@client.command()
+async def time(ctx, command="TUGA"):
+    newtime = datetime.now(timezone(TIMEZONES[command.upper()])) if command.upper() in TIMEZONES.keys() else None
+
+    if newtime:    
+        current_time = newtime.strftime("%H:%M:%S")
+        print(str(timezone), current_time)
+        await ctx.send(current_time)
 
 @client.event
 async def on_message(msg):

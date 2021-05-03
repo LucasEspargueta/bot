@@ -70,6 +70,8 @@ async def on_message(msg):
       return
    if "woo" in msg.content.lower():
       await msg.channel.send("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
+   if "this gigante" in msg.content.lower():
+      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")
    if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
       await msg.channel.send('among us')
    if "pedro ramalho" in msg.content.lower():

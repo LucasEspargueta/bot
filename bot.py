@@ -66,6 +66,8 @@ async def time(ctx, command="TUGA"):
 async def on_message(msg):
    if "toni" in msg.content.lower():
       await msg.channel.send("Tony")
+   if "PerasChamp" in msg.content.lower():
+      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842518619342503946/unknown-2.jpg")
    if msg.author == client.user:
       return
    if "woo" in msg.content.lower():

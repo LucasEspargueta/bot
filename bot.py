@@ -67,8 +67,7 @@ async def on_message(msg):
    if "toni" in msg.content.lower():
       await msg.channel.send("Tony")
    if "PerasChamp" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842518619342503946/unknown-2.jpg")
-      print("foi")
+      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
    if msg.author == client.user:
       return
    if "woo" in msg.content.lower():
@@ -79,8 +78,8 @@ async def on_message(msg):
       await msg.channel.send('among us')
    if "pedro ramalho" in msg.content.lower():
       await msg.channel.send('Pedro Ramalho \n https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')
-   elif "dababy" in msg.content.lower() or "less go" in msg.content.lower():
-      await msg.channel.send("Let's go - DaBaby \n https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg")
+   if "dababy" in msg.content.lower() or "less go" in msg.content.lower():
+      await msg.channel.send("https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg")
    elif "balta" in msg.content.lower():
       num = random.randint(0, 100000)
       if num == 69420:

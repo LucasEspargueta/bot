@@ -67,7 +67,7 @@ async def on_message(msg):
    if "toni" in msg.content.lower():
       await msg.channel.send("Tony")
    if "ahegao gigante" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842870383795109968/81376121441170228311.png")
+      await msg.channel.send("https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
    if "peraschamp" in msg.content.lower():
       await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
    if "letroll gigante" in msg.content.lower():

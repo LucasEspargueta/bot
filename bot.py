@@ -68,6 +68,8 @@ async def on_message(msg):
       await msg.channel.send("Tony")
    if "PerasChamp" in msg.content.lower():
       await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
+   if "letroll gigante" in msg.content.lower():
+      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
    if msg.author == client.user:
       return
    if "woo" in msg.content.lower():

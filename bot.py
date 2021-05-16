@@ -66,6 +66,8 @@ async def time(ctx, command="TUGA"):
 async def on_message(msg):
    if "toni" in msg.content.lower():
       await msg.channel.send("Tony")
+   if "big homies" in msg.content.lower():
+      await msg.channel.send("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
    if "simp" in msg.content.lower():
       await msg.channel.send("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")	
    if "ahegao gigante" in msg.content.lower():

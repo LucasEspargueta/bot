@@ -7,6 +7,7 @@ import time
 from datetime import datetime
 from pytz import timezone
 import asyncio
+import re
 
 client = commands.Bot(command_prefix=['gimme '], help_command=PrettyHelp())
 now = datetime.now(timezone('Europe/Lisbon'))
@@ -73,7 +74,7 @@ async def on_message(msg):
       await msg.channel.send("Tony")
    if "big homies" in msg.content.lower():
       await msg.channel.send("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
-   if "simp" in msg.content.lower():
+   if re.search(r"\bsimp\b", msg.content, flags=re.I) is not None:
       await msg.channel.send("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")	
    if "ahegao gigante" in msg.content.lower():
       await msg.channel.send("https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
@@ -83,7 +84,7 @@ async def on_message(msg):
       await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
    if msg.author == client.user:
       return
-   if "woo" in msg.content.lower():
+   if re.search(r"\bwoo+\b", msg.content, flags=re.I) is not None:
       await msg.channel.send("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
    if "this gigante" in msg.content.lower():
       await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")

@@ -14,10 +14,15 @@ current_time = now.strftime("%H:%M:%S")
 
 TIMEZONES = {
 	"GMTM12": "Pacific/Auckland",
+    "EST": "Etc/GMT+4",
     "GMT": "Etc/GMT",
+    "PST": "Etc/GMT+7",
     "GMTM10": "Etc/GMT+10",
+    "WET":'Europe/Lisbon',
     "GMTP13": "US/Samoa",
+    "CST": "Etc/GMT+5",
     "TUGA": "Europe/Lisbon",
+    "CET": "Europe/Madrid",
     "GMTM9": "Etc/GMT+9",
     "GMTM8": "US/Alaska",
     "GMTM7": "Etc/GMT+7",

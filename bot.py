@@ -52,7 +52,7 @@ TIMEZONES = {
 async def on_ready():
     print('Vim-me!')
     global guild
-    guild = client.get_guild(int(655826315777146901))
+    guild = client.get_guild(int(759849368966004767))
     print(guild)
 
 @client.command()

@@ -9,9 +9,11 @@ from pytz import timezone
 import asyncio
 import re
 
-client = commands.Bot(command_prefix=['gimme '], help_command=PrettyHelp())
 now = datetime.now(timezone('Europe/Lisbon'))
 current_time = now.strftime("%H:%M:%S")
+intents = discord.Intents.default()
+intents.members = True
+client = commands.Bot(command_prefix=['gimme '], help_command=PrettyHelp(), intents=intents)
 
 TIMEZONES = {
 	"GMTM12": "Pacific/Auckland",
@@ -49,6 +51,9 @@ TIMEZONES = {
 @client.event
 async def on_ready():
     print('Vim-me!')
+    global guild
+    guild = client.get_guild(int(655826315777146901))
+    print(guild)
 
 @client.command()
 async def link(ctx):
@@ -70,38 +75,42 @@ async def time(ctx, command="TUGA"):
 
 @client.event
 async def on_message(msg):
-   if re.search(r"\btoni\b", msg.content, flags=re.I) is not None:
-      await msg.reply("Tony")
-   if "booba gif" in msg.content.lower():
-       await msg.reply('https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif')
-   if "big homies" in msg.content.lower():
-      await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
-   if re.search(r"\bsimp\b", msg.content, flags=re.I) is not None:
-      await msg.reply("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")	
-   if "ahegao gigante" in msg.content.lower():
-      await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
-   if "peraschamp" in msg.content.lower():
-      await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
-   if "letroll gigante" in msg.content.lower():
-      await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
-   if msg.author == client.user:
-      return
-   if re.search(r"\bwoo+\b", msg.content, flags=re.I) is not None:
-      await msg.reply("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
-   if "this gigante" in msg.content.lower():
-      await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")
-   if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
-      await msg.reply('among us')
-   if "pedro ramalho" in msg.content.lower():
-      await msg.reply('Pedro Ramalho \n https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')
-   if "dababy" in msg.content.lower() or "less go" in msg.content.lower():
-      await msg.reply("https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg")
-   elif "balta" in msg.content.lower():
-      num = random.randint(0, 100000)
-      if num == 69420:
-        await msg.reply('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
-        print('racismo')
-   await client.process_commands(msg)
+    if msg.author == msg.guild.get_member(331231536106176512):
+        mention = f'<@!{client.user.id}>'
+        if "amo-te" in msg.content.lower() and mention in msg.content.lower(): 
+            await msg.reply('também te amo')
+    if re.search(r"\btoni\b", msg.content, flags=re.I) is not None:
+       await msg.reply("Tony")
+    if "booba gif" in msg.content.lower():
+        await msg.reply('https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif')
+    if "big homies" in msg.content.lower():
+       await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
+    if re.search(r"\bsimp\b", msg.content, flags=re.I) is not None:
+       await msg.reply("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")	
+    if "ahegao gigante" in msg.content.lower():
+       await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
+    if "peraschamp" in msg.content.lower():
+       await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
+    if "letroll gigante" in msg.content.lower():
+       await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
+    if msg.author == client.user:
+       return
+    if re.search(r"\bwoo+\b", msg.content, flags=re.I) is not None:
+       await msg.reply("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
+    if "this gigante" in msg.content.lower():
+       await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")
+    if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
+       await msg.reply('among us')
+    if "pedro ramalho" in msg.content.lower():
+       await msg.reply('Pedro Ramalho \n https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')
+    if "dababy" in msg.content.lower() or "less go" in msg.content.lower():
+       await msg.reply("https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg")
+    elif "balta" in msg.content.lower():
+       num = random.randint(0, 100000)
+       if num == 69420:
+         await msg.reply('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
+         print('racismo')
+    await client.process_commands(msg)
 @client.command()
 async def cum(ctx):
    await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')

@@ -57,7 +57,7 @@ async def link(ctx):
              "m", "n", "o", "p", "q", "r",
              "s", "t", "u", "v", "x", "y", "z",
              "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-    await ctx.send("https://prnt.sc/" + "".join(list(random.choices(lista, k=6))))
+    await ctx.reply("https://prnt.sc/" + "".join(list(random.choices(lista, k=6))))
     
 @client.command()
 async def time(ctx, command="TUGA"):
@@ -66,48 +66,50 @@ async def time(ctx, command="TUGA"):
     if newtime:    
         current_time = newtime.strftime("%H:%M:%S")
         print(str(timezone), current_time)
-        await ctx.send(current_time)
+        await ctx.reply(current_time)
 
 @client.event
 async def on_message(msg):
-   if "toni" in msg.content.lower():
-      await msg.channel.send("Tony")
+   if re.search(r"\btoni\b", msg.content, flags=re.I) is not None:
+      await msg.reply("Tony")
+   if "booba gif" in msg.content.lower():
+       await msg.reply('https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif')
    if "big homies" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
+      await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
    if re.search(r"\bsimp\b", msg.content, flags=re.I) is not None:
-      await msg.channel.send("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")	
+      await msg.reply("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")	
    if "ahegao gigante" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
+      await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
    if "peraschamp" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
+      await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
    if "letroll gigante" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
+      await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
    if msg.author == client.user:
       return
    if re.search(r"\bwoo+\b", msg.content, flags=re.I) is not None:
-      await msg.channel.send("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
+      await msg.reply("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
    if "this gigante" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")
+      await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")
    if "among us" in msg.content.lower() or "amogus" in msg.content.lower():
-      await msg.channel.send('among us')
+      await msg.reply('among us')
    if "pedro ramalho" in msg.content.lower():
-      await msg.channel.send('Pedro Ramalho \n https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')
+      await msg.reply('Pedro Ramalho \n https://cdn.discordapp.com/attachments/759882556744663040/818850186754785310/unknown.png')
    if "dababy" in msg.content.lower() or "less go" in msg.content.lower():
-      await msg.channel.send("https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg")
+      await msg.reply("https://cdn.discordapp.com/attachments/379034825304178712/822505085820862494/IMG_20210318_233715.jpg")
    elif "balta" in msg.content.lower():
       num = random.randint(0, 100000)
       if num == 69420:
-        await msg.channel.send('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
+        await msg.reply('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
         print('racismo')
    await client.process_commands(msg)
 @client.command()
 async def cum(ctx):
-   await ctx.send('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
+   await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
 @client.command()
 async def gangnamstyle(ctx):
-   await ctx.send('https://www.youtube.com/watch?v=9bZkp7q19f0')
+   await ctx.reply('https://www.youtube.com/watch?v=9bZkp7q19f0')
 @client.command()
 async def git(ctx):
-   await ctx.send('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
+   await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
     
 client.run(os.environ["token"])

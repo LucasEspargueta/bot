@@ -9,11 +9,18 @@ from pytz import timezone
 import asyncio
 import re
 
+#for time command
 now = datetime.now(timezone('Europe/Lisbon'))
 current_time = now.strftime("%H:%M:%S")
-intents = discord.Intents.default()
+
+#important
+intents = discord.Intents.all()
 intents.members = True
-client = commands.Bot(command_prefix=['gimme '], help_command=PrettyHelp(), intents=intents)
+client = commands.Bot(command_prefix="gimme ", intents = intents)
+
+#sexy help
+color = 0xb317da
+client.help_command = PrettyHelp(color=color)
 
 TIMEZONES = {
 	"GMTM12": "Pacific/Auckland",
@@ -55,8 +62,8 @@ async def on_ready():
     guild = client.get_guild(int(759849368966004767))
     print(guild)
 
-@client.command()
-async def link(ctx):
+@client.command(help = "Gives you a random screenshot from the www, if you see anything inappropriate, please report it!")
+async def prnt(ctx):
     lista = ["a", "b", "c", "d", "e", "f",
              "g", "h", "i", "j", "k", "l",
              "m", "n", "o", "p", "q", "r",
@@ -64,7 +71,16 @@ async def link(ctx):
              "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     await ctx.reply("https://prnt.sc/" + "".join(list(random.choices(lista, k=6))))
     
-@client.command()
+@client.command(help = 'Gives you a random video from the www, if you see anything inappropriate, please report it!')
+async def video(ctx):
+    lista = ["a", "b", "c", "d", "e", "f",
+             "g", "h", "i", "j", "k", "l",
+             "m", "n", "o", "p", "q", "r",
+             "s", "t", "u", "v", "x", "y", "z",
+             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    await ctx.reply("https://streamable.com/" + "".join(list(random.choices(lista, k=6))))
+    
+@client.command(help = 'Gives you the time in different timezones. Try EST, PST, GMT, WET, CST & CET')
 async def time(ctx, command="TUGA"):
     newtime = datetime.now(timezone(TIMEZONES[command.upper()])) if command.upper() in TIMEZONES.keys() else None
 
@@ -111,14 +127,16 @@ async def on_message(msg):
          await msg.reply('https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
          print('racismo')
     await client.process_commands(msg)
-@client.command()
-async def cum(ctx):
-   await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
-@client.command()
-async def gangnamstyle(ctx):
-   await ctx.reply('https://www.youtube.com/watch?v=9bZkp7q19f0')
-@client.command()
-async def git(ctx):
-   await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
+    
+#old stuff
+# @client.command()
+# async def cum(ctx):
+#    await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
+# @client.command()
+# async def gangnamstyle(ctx):
+#    await ctx.reply('https://www.youtube.com/watch?v=9bZkp7q19f0')
+# @client.command()
+# async def git(ctx):
+#    await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
     
 client.run(os.environ["token"])

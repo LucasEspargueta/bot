@@ -56,6 +56,45 @@ TIMEZONES = {
 }
 
 
+EMOTES = {
+    "5Head" : 'https://cdn.discordapp.com/attachments/822774646981263360/847231713909801001/5Head.png',
+    "AYAYA" : 'https://cdn.discordapp.com/attachments/822774646981263360/847231719370653766/AYAYA.png',
+    "blobDance" :'https://cdn.discordapp.com/attachments/822774646981263360/847231726790246410/blobDance.gif',
+    "catJAM" : 'https://cdn.discordapp.com/attachments/822774646981263360/847231735586619412/catJAM.gif',
+    "Clap" : 'https://cdn.discordapp.com/attachments/822774646981263360/847232785138974731/Clap.gif',
+    "COGGERS" : 'https://cdn.discordapp.com/attachments/822774646981263360/847232787504955509/COGGERS.gif',
+    "EZ" : 'https://cdn.discordapp.com/attachments/822774646981263360/847232790630236170/EZ.png',
+    "gachiHYPER" : 'https://cdn.discordapp.com/attachments/822774646981263360/847232798863392808/gachiHYPER.gif',
+    "HACKERMANS" : 'https://cdn.discordapp.com/attachments/822774646981263360/847233551007350864/HACKERMANS.gif',
+    "modCheck": 'https://cdn.discordapp.com/attachments/822774646981263360/847233559667671040/modCheck.gif',
+    "monkaSTEER" :'https://cdn.discordapp.com/attachments/822774646981263360/847233563799453696/monhaSTEER.gif',
+    "monkaTOS":'https://cdn.discordapp.com/attachments/822774646981263360/847233957603180574/monkaTOS.gif',
+    "monkaSHAKE":'https://cdn.discordapp.com/attachments/822774646981263360/847233953475199016/monkaSHAKE.gif',
+    "monkaS":'https://cdn.discordapp.com/attachments/822774646981263360/847233949301604422/monkaS.png',
+    "monkaGUN":'https://cdn.discordapp.com/attachments/822774646981263360/847233943233232956/monkaGUN.png',
+    "NOPERS":'https://cdn.discordapp.com/attachments/822774646981263360/847234529189298177/NOPERS.gif',
+    "NODDERS":'https://cdn.discordapp.com/attachments/822774646981263360/847234515558596628/NODDERS.gif',
+    "monkaX":'https://cdn.discordapp.com/attachments/822774646981263360/847234520536186911/monkaX.gif',
+    "peepoLeave":'https://cdn.discordapp.com/attachments/822774646981263360/847234915203809330/peepoLeave.gif',
+    "peepoArrive":'https://cdn.discordapp.com/attachments/822774646981263360/847234906551091211/peepoArive.gif',
+    "peepoClap":'https://cdn.discordapp.com/attachments/822774646981263360/847234911257624636/peepoClap.gif',
+    "OMEGALUL":'https://cdn.discordapp.com/attachments/822774646981263360/847234902193209344/omegalul.png',
+    "pepeD":'https://cdn.discordapp.com/attachments/822774646981263360/847235635235913798/pepeD.gif',
+    "peepoRun":'https://cdn.discordapp.com/attachments/822774646981263360/847235622355599360/peepoRun.gif',
+    "peepoPooPoo":'https://cdn.discordapp.com/attachments/822774646981263360/847235613144383508/peepoPooPoo.gif',
+    "peepoSIMP":'https://cdn.discordapp.com/attachments/822774646981263360/847235629620527104/peepoSIMP.gif',
+    "PepeHands":'https://cdn.discordapp.com/attachments/822774646981263360/847236478559846451/PepeHands.png',
+    "PepegaAim":'https://cdn.discordapp.com/attachments/822774646981263360/847236463603220500/PepegaAim.gif',
+    "POGGERS":'https://cdn.discordapp.com/attachments/822774646981263360/847236849722064926/POGGERS.png',
+    "PETTHEMODS":'https://cdn.discordapp.com/attachments/822774646981263360/847236843338203186/PETTHEMODS.gif',
+    "PepePls":'https://cdn.discordapp.com/attachments/822774646981263360/847236838091259974/PepePls.gif',
+    "pepeJAM":'https://cdn.discordapp.com/attachments/822774646981263360/847236832940523520/pepeJAM.gif',
+    "TriDance":'https://cdn.discordapp.com/attachments/822774646981263360/847237873232511036/TriDance.gif',
+    "SumSmash":'https://cdn.discordapp.com/attachments/822774646981263360/847237869185794119/sumSmash.gif',
+    "ricardoFlick":'https://cdn.discordapp.com/attachments/822774646981263360/847237868921683978/ricardoFlick.gif',
+    "popCat":'https://cdn.discordapp.com/attachments/822774646981263360/847237862029393920/popCat.gif'
+    }
+
 #rich presence
 async def status():
     a = random.randint(1, 4)
@@ -106,6 +145,11 @@ async def time(ctx, command="TUGA"):
 
 @client.event
 async def on_message(msg):
+    if msg.author == client.user:
+       return
+    for k, e in EMOTES.items():
+        if k in msg.content:
+            await msg.channel.send(e)
     if msg.author == msg.guild.get_member(331231536106176512):
         mention = f'<@!{client.user.id}>'
         if "amo-te" in msg.content.lower() and mention in msg.content.lower(): 
@@ -124,8 +168,6 @@ async def on_message(msg):
        await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
     if "letroll gigante" in msg.content.lower():
        await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
-    if msg.author == client.user:
-       return
     if re.search(r"\bwoo+\b", msg.content, flags=re.I) is not None:
        await msg.reply("https://tenor.com/view/pop-smoke-dance-nyc-dance-move-smile-gif-16391422")
     if "this gigante" in msg.content.lower():

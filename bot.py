@@ -55,12 +55,27 @@ TIMEZONES = {
     "GMTP12": "Pacific/Auckland"
 }
 
+
+#rich presence
+async def status():
+    a = random.randint(1, 4)
+    if a==1:
+      await client.change_presence(activity=discord.Game(name="Among Us"))
+    if a==2:
+      await client.change_presence(activity=discord.Streaming(name="Cute animals", url='https://www.twitch.tv/marinemammalrescue'))
+    if a==3:
+      await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="https://open.spotify.com/playlist/5RZQwNffu3pWAWiLc5yrfM"))
+    if a==4:
+      await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Cars"))
+    await asyncio.sleep(0)
+
 @client.event
 async def on_ready():
     print('Vim-me!')
     global guild
     guild = client.get_guild(int(759849368966004767))
     print(guild)
+    await status()
 
 @client.command(help = "Gives you a random screenshot from the www, if you see anything inappropriate, please report it!")
 async def prnt(ctx):
@@ -128,15 +143,14 @@ async def on_message(msg):
          print('racismo')
     await client.process_commands(msg)
     
-#old stuff
-# @client.command()
-# async def cum(ctx):
-#    await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
-# @client.command()
-# async def gangnamstyle(ctx):
-#    await ctx.reply('https://www.youtube.com/watch?v=9bZkp7q19f0')
-# @client.command()
-# async def git(ctx):
-#    await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
+@client.command()
+async def cum(ctx):
+   await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
+@client.command()
+async def gangnamstyle(ctx):
+   await ctx.reply('https://www.youtube.com/watch?v=9bZkp7q19f0')
+@client.command()
+async def git(ctx):
+   await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
     
 client.run(os.environ["token"])

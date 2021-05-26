@@ -185,16 +185,16 @@ async def on_message(msg):
          print('racismo')
     await client.process_commands(msg)
     
-@client.command()
+@client.command(help='AWOOOOOOOOOOOO AND THE CUM WONT STOP')
 async def cum(ctx):
    await ctx.reply('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
-@client.command()
+@client.command(help="i mean")
 async def gangnamstyle(ctx):
    await ctx.reply('https://www.youtube.com/watch?v=9bZkp7q19f0')
-@client.command()
+@client.command(help="PUSH TO THE GITHUB")
 async def git(ctx):
    await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
-@client.command()
+@client.command(help="it's me")
 async def creator(ctx):
     await ctx.reply('https://github.com/LucasSexo/')
     

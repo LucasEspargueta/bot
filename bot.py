@@ -152,5 +152,8 @@ async def gangnamstyle(ctx):
 @client.command()
 async def git(ctx):
    await ctx.reply('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
+@client.command()
+async def creator(ctx):
+    await ctx.reply('https://github.com/LucasSexo/')
     
 client.run(os.environ["token"])

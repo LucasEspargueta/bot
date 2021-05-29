@@ -147,9 +147,9 @@ async def time(ctx, command="TUGA"):
 async def on_message(msg):
     if msg.author == client.user:
        return
-    for s in msg.content.split():
-        if s in EMOTES:
-            await msg.channel.send(EMOTES[s])
+    a = [EMOTES[s] for s in msg.content.split() if s in EMOTES]
+    if a:
+        await msg.channel.send("\n".join(a[:10]))
     if msg.author == msg.guild.get_member(331231536106176512):
         mention = f'<@!{client.user.id}>'
         if "amo-te" in msg.content.lower() and mention in msg.content.lower(): 

@@ -92,7 +92,13 @@ EMOTES = {
     "TriDance":'https://cdn.discordapp.com/attachments/822774646981263360/847237873232511036/TriDance.gif',
     "SumSmash":'https://cdn.discordapp.com/attachments/822774646981263360/847237869185794119/sumSmash.gif',
     "ricardoFlick":'https://cdn.discordapp.com/attachments/822774646981263360/847237868921683978/ricardoFlick.gif',
-    "popCat":'https://cdn.discordapp.com/attachments/822774646981263360/847237862029393920/popCat.gif'
+    "popCat":'https://cdn.discordapp.com/attachments/822774646981263360/847237862029393920/popCat.gif',
+    "FeelsGoodMan":"https://cdn.discordapp.com/attachments/822774646981263360/848672889733382184/FeelsGoodMan.png",
+    "Kreygasm":"https://cdn.discordapp.com/attachments/822774646981263360/848672894930255922/Kreygasm.png",
+    "HeyGuys": "https://cdn.discordapp.com/attachments/822774646981263360/848672900578803752/HeyGuys.png",
+    "PJSalt":"https://cdn.discordapp.com/attachments/822774646981263360/848673908961837096/pjsalt.png",
+    "Jebaited":"https://cdn.discordapp.com/attachments/822774646981263360/848672947980075008/Jebait.png",
+    "WutFace":"https://cdn.discordapp.com/attachments/822774646981263360/848672943415361566/wutface-transparent-1.png"
     }
 
 #rich presence

@@ -203,5 +203,8 @@ async def git(ctx):
 @client.command(help="it's me")
 async def creator(ctx):
     await ctx.reply('https://github.com/LucasSexo/')
+@client.command(help="it's domking")
+async def domking(ctx):
+    await ctx.reply('https://media.discordapp.net/attachments/759882556744663040/848589067305091102/makesweet-a1gvuu.gif')
     
 client.run(os.environ["token"])

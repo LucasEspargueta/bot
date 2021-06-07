@@ -164,6 +164,8 @@ async def on_message(msg):
        await msg.reply("Tony")
     if "booba gif" in msg.content.lower():
         await msg.reply('https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif')
+    if "peras actually" in msg.content.lower():
+        await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/851501480317026304/caption.png")
     if "big homies" in msg.content.lower():
        await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
     if re.search(r"\bsimp\b", msg.content, flags=re.I) is not None:

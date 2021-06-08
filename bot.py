@@ -123,7 +123,7 @@ EMOTES = {
     "SumSmash":'https://cdn.discordapp.com/attachments/822774646981263360/847237869185794119/sumSmash.gif',
     "TriDance":'https://cdn.discordapp.com/attachments/822774646981263360/847237873232511036/TriDance.gif',
     "WutFace":"https://cdn.discordapp.com/attachments/822774646981263360/848672943415361566/wutface-transparent-1.png",
-    "xqcL": "https://cdn.discordapp.com/attachments/837324450588393476/851618047239782450/xqcL.png",
+    "xqcL": "https://cdn.discordapp.com/attachments/759882556744663040/851789059532652544/6e5.png",
 }
 
 #rich presence

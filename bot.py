@@ -185,7 +185,8 @@ async def on_message(msg):
         mention = f'<@!{client.user.id}>'
         if "amo-te" in msg.content.lower() and mention in msg.content.lower(): 
             await msg.reply('também te amo')
-        if "21 PILOTOS ARGENTINOS" in msg.content.lower():
+    if msg.author == msg.guild.get_member(331231536106176512):
+        if "21 PILOTOS ARGENTINOS" in msg.content:
             await msg.reply('21 PILOTOS ARGENTINOS', tts=True)
     if re.search(r"\btoni\b", msg.content, flags=re.I) is not None:
        await msg.reply("Tony")

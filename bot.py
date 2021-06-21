@@ -1,4 +1,5 @@
 import random
+from discord import message
 from discord.ext import commands
 from pretty_help import PrettyHelp
 import discord
@@ -294,5 +295,5 @@ async def nudes(ctx):
 
     mp = await ctx.message.author.create_dm()
     await mp.send(embed = emb)
-
+    print('O {} tá down bad'.format(message.author.name))
 client.run(os.environ["token"])

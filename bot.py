@@ -13,7 +13,7 @@ import asyncpraw
 #reddit
 
 reddit = asyncpraw.Reddit(client_id = "E7ja3WGqt2ToJA",
-                     client_secret = os.environ['secret'],
+                     client_secret = os.environ['client_secret'],
                      username = "GriloDaFCUP",
                      password = os.environ['password'],
                      user_agent = "GriloDaFCUP 1.0 by /u/GriloDaFCUP")

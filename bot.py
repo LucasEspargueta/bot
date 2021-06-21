@@ -8,6 +8,15 @@ from datetime import datetime
 from pytz import timezone
 import asyncio
 import re
+import asyncpraw
+
+#reddit
+
+reddit = asyncpraw.Reddit(client_id = "E7ja3WGqt2ToJA",
+                     client_secret = os.environ['secret'],
+                     username = "GriloDaFCUP",
+                     password = os.environ['password'],
+                     user_agent = "GriloDaFCUP 1.0 by /u/GriloDaFCUP")
 
 # for time command
 now = datetime.now(timezone('Europe/Lisbon'))
@@ -263,5 +272,27 @@ async def domking(ctx):
     await ctx.reply(
         'https://media.discordapp.net/attachments/759882556744663040/848589067305091102/makesweet-a1gvuu.gif')
 
+@client.command(help = "sends nudes")
+async def nudes(ctx):
+    subreddit = await reddit.subreddit("gonewild")
+    all_subs = []
+
+    top = subreddit.top("month", limit = 70)
+
+    async for submission in top:
+        if ("i.redd.it" in submission.url) and (len(submission.title) < 256):
+            all_subs.append(submission)
+
+    random_submission = random.choice(all_subs)
+
+    name = random_submission.title
+    url = random_submission.url
+
+    emb = discord.Embed(title = name, timestamp=datetime.utcnow())
+    emb.set_image(url = url)
+    emb.color = 0xc4ffed
+
+    mp = await ctx.message.author.create_dm()
+    await mp.send(embed = emb)
 
 client.run(os.environ["token"])

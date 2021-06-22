@@ -295,5 +295,5 @@ async def nudes(ctx):
 
     mp = await ctx.message.author.create_dm()
     await mp.send(embed = emb)
-    print('O {} tá down bad'.format(message.author.name))
+    print('O {} tá down bad'.format(ctx.message.author.name))
 client.run(os.environ["token"])

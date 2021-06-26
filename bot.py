@@ -199,13 +199,6 @@ async def on_message(msg):
     a = [EMOTES[s] for s in msg.content.split() if s in EMOTES]
     if a:
         await msg.channel.send("\n".join(a[:10]))
-    if msg.author == msg.guild.get_member(331231536106176512):
-        mention = f'<@!{client.user.id}>'
-        if "amo-te" in msg.content.lower() and mention in msg.content.lower():
-            await msg.reply('também te amo')
-    if msg.author == msg.guild.get_member(331231536106176512):
-        if "21 PILOTOS ARGENTINOS" in msg.content:
-            await msg.reply('21 PILOTOS ARGENTINOS', tts=True)
     if "booba gif" in msg.content.lower():
         await msg.reply('https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif')
     if "peras actually" in msg.content.lower():
@@ -296,4 +289,14 @@ async def nudes(ctx):
     mp = await ctx.message.author.create_dm()
     await mp.send(embed = emb)
     print('O {} tá down bad'.format(ctx.message.author.name))
+    
+    
+#desabafo stuff
+@client.command()
+async def anon(ctx, arg):
+    if isinstance(ctx.channel, discord.channel.DMChannel):#isto está aqui puramente 
+        desabafo = client.get_channel(796509327997403156)#por segurança e evitar spam
+        print('O {} desabafou'.format(ctx.message.author.name)) #nao irei nunca divulgar quem usou o comando!
+        await desabafo.send(arg)                                
+
 client.run(os.environ["token"])

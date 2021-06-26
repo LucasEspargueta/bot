@@ -293,10 +293,13 @@ async def nudes(ctx):
     
 #desabafo stuff
 @client.command()
-async def anon(ctx, arg):
+async def anon(ctx, *, arg):
     if isinstance(ctx.channel, discord.channel.DMChannel):#isto está aqui puramente 
         desabafo = client.get_channel(796509327997403156)#por segurança e evitar spam
         print('O {} desabafou'.format(ctx.message.author.name)) #nao irei nunca divulgar quem usou o comando!
-        await desabafo.send(arg)                                
+        desembed= discord.Embed(title="Anon says:", color= 0x2e69ff)
+        desembed.description = arg
+        
+        await desabafo.send(embed = desembed)                                
 
 client.run(os.environ["token"])

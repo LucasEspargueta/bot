@@ -14,11 +14,11 @@ import requests
 
 #reddit
 
-reddit = asyncpraw.Reddit(client_id = "E7ja3WGqt2ToJA",
-                     client_secret = os.environ['client_secret'],
-                     username = "GriloDaFCUP",
-                     password = os.environ['password'],
-                     user_agent = "GriloDaFCUP 1.0 by /u/GriloDaFCUP")
+#reddit = asyncpraw.Reddit(client_id = "E7ja3WGqt2ToJA",
+ #                    client_secret = os.environ['client_secret'],
+  #                   username = "GriloDaFCUP",
+   #                  password = os.environ['password'],
+    #                 user_agent = "GriloDaFCUP 1.0 by /u/GriloDaFCUP")
 
 # for time command
 now = datetime.now(timezone('Europe/Lisbon'))
@@ -319,6 +319,11 @@ async def vacina(ctx):
         vaccination_max_age = regexp_match.group(1)
         vaccination_last_updated = datetime.now()
 
-    await ctx.reply(f"Idade max de vacinação atual: {vaccination_max_age}. Última atualização: {vaccination_last_updated}")
+        colourcaralho = [0x38d42a, 0x1fd1e1, 0x1dda8b, 0x2f55d8, 0xe191e3, 0x6919e7, 0xc949a6, 0x2e69ff]
+        vacinaembed= discord.Embed(color= random.choice(colourcaralho))
+        vacinaembed.description = (f"Idade max de vacinação atual: **{vaccination_max_age}**. Última atualização: {vaccination_last_updated}\n\n" 
+                                   "Para mais informação visita:  [DGS](https://covid19.min-saude.pt/pedido-de-agendamento/)")
+        vacinaembed.set_footer(text=f"Vacina-te!")
+        await ctx.reply(embed = vacinaembed)
 
 client.run(os.environ["token"])

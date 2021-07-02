@@ -5,3 +5,4 @@ async-timeout==3.0.1
 discord-pretty-help==1.1.2
 asyncpraw==7.3.0
 asyncprawcore==2.2.0
+requests==2.25.1

@@ -10,6 +10,7 @@ from pytz import timezone
 import asyncio
 import re
 import asyncpraw
+import requests
 
 #reddit
 
@@ -301,5 +302,23 @@ async def anon(ctx, *, arg):
         desembed.description = arg
         
         await desabafo.send(embed = desembed)                                
+
+vaccination_max_age, vaccination_last_updated = None, None
+
+@client.command(help="Checks the current max age of vaccination")
+async def vacina(ctx):
+    global vaccination_max_age, vaccination_last_updated
+    now = datetime.now()
+    update_interval_secs = 60
+
+    if not vaccination_last_updated or (now - vaccination_last_updated).seconds >= update_interval_secs:
+        # Update the stored info
+        url = 'https://covid19.min-saude.pt/pedido-de-agendamento/'
+        res = requests.get(url)
+        regexp_match = re.search('Tem (\d+) ou mais anos e ainda não foi vacinado\(a\)?', res.text)
+        vaccination_max_age = regexp_match.group(1)
+        vaccination_last_updated = datetime.now()
+
+    await ctx.reply(f"Idade max de vacinação atual: {vaccination_max_age}. Última atualização: {vaccination_last_updated}")
 
 client.run(os.environ["token"])

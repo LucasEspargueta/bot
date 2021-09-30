@@ -202,25 +202,38 @@ async def anon(ctx, *, arg):
 
 vaccination_max_age, vaccination_last_updated = None, None
 
-@client.command(help="Checks the current max age of vaccination")
-async def vacina(ctx):
-    global vaccination_max_age, vaccination_last_updated
-    now = datetime.now()
-    update_interval_secs = 60
+#@client.command(help="Checks the current max age of vaccination")
+#async def vacina(ctx):
+#    global vaccination_max_age, vaccination_last_updated
+#    now = datetime.now()
+#    update_interval_secs = 60
+#
+#    if not vaccination_last_updated or (now - vaccination_last_updated).seconds >= update_interval_secs:
+#        # Update the stored info
+#        url = 'https://covid19.min-saude.pt/pedido-de-agendamento/'
+#        res = requests.get(url)
+#        regexp_match = re.search('Tem (\d+) ou mais anos e ainda não foi vacinado\(a\)?', res.text)
+#        vaccination_max_age = regexp_match.group(1)
+#        vaccination_last_updated = datetime.now()
+#
+#    colourcaralho = [0x38d42a, 0x1fd1e1, 0x1dda8b, 0x2f55d8, 0xe191e3, 0x6919e7, 0xc949a6, 0x2e69ff]
+#    vacinaembed= discord.Embed(color= random.choice(colourcaralho))
+#    vacinaembed.description = (f"Idade max de vacinação atual: **{vaccination_max_age}**. Última atualização: {vaccination_last_updated}\n\n" 
+#                                   "Para mais informação visita:  [DGS](https://covid19.min-saude.pt/pedido-de-agendamento/)")
+#    vacinaembed.set_footer(text=f"Vacina-te!")
+#    await ctx.reply(embed = vacinaembed)
 
-    if not vaccination_last_updated or (now - vaccination_last_updated).seconds >= update_interval_secs:
-        # Update the stored info
-        url = 'https://covid19.min-saude.pt/pedido-de-agendamento/'
-        res = requests.get(url)
-        regexp_match = re.search('Tem (\d+) ou mais anos e ainda não foi vacinado\(a\)?', res.text)
-        vaccination_max_age = regexp_match.group(1)
-        vaccination_last_updated = datetime.now()
+@client.command(help='Sends a dm to a role')
+async def comm(ctx, role: discord.Role, *, content):
+    embed = discord.Embed(title="Announcement FEUP ", description=content, colour=0x423abc)
+    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    await ctx.message.delete()
+    if '832202769615552532' in str(ctx.author.id):
+        for m in ctx.guild.members:
+            if role in m.roles:
+                await m.send(embed=embed)
 
-    colourcaralho = [0x38d42a, 0x1fd1e1, 0x1dda8b, 0x2f55d8, 0xe191e3, 0x6919e7, 0xc949a6, 0x2e69ff]
-    vacinaembed= discord.Embed(color= random.choice(colourcaralho))
-    vacinaembed.description = (f"Idade max de vacinação atual: **{vaccination_max_age}**. Última atualização: {vaccination_last_updated}\n\n" 
-                                   "Para mais informação visita:  [DGS](https://covid19.min-saude.pt/pedido-de-agendamento/)")
-    vacinaembed.set_footer(text=f"Vacina-te!")
-    await ctx.reply(embed = vacinaembed)
+    else:
+        await ctx.send(ctx.author.mention + "you can't use that!")
 
 client.run(os.environ["token"])

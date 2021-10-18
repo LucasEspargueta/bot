@@ -225,7 +225,7 @@ vaccination_max_age, vaccination_last_updated = None, None
 
 @client.command(help='Sends a dm to a role')
 async def comm(ctx, role: discord.Role, *, content):
-    embed = discord.Embed(title="Announcement FEUP ", description=content, colour=0x423abc)
+    embed = discord.Embed(title="Comunicado Server FEUP ⚡ ", description=content, colour=0x423abc)
     embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
     await ctx.message.delete()
     if '832202769615552532' in str(ctx.author.id):

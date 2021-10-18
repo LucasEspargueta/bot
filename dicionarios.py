@@ -46,7 +46,7 @@ EMOTES = {
     "D:": "https://cdn.discordapp.com/attachments/786571345072357376/851588276950401054/D.png",
     "Drake": "https://cdn.discordapp.com/attachments/786571345072357376/851585499708915712/Drake.gif",
     "EZ": 'https://cdn.discordapp.com/attachments/822774646981263360/847232790630236170/EZ.png',
-    "FeelsGoodMan": "https://cdn.discordapp.com/attachments/822774646981263360/848672889733382184/FeelsGoodMan.png",
+    "FeelsGoodMan": "https://cdn.discordapp.com/attachments/879426936756113408/899599476946272286/feelsgoodmanpng.png",
     "gachiHYPER": 'https://cdn.discordapp.com/attachments/822774646981263360/847232798863392808/gachiHYPER.gif',
     "GRUG": "https://cdn.discordapp.com/attachments/786571345072357376/851587814231375922/GRUG.png",
     "HACKERMANS": 'https://cdn.discordapp.com/attachments/822774646981263360/847233551007350864/HACKERMANS.gif',

@@ -31,7 +31,7 @@ intents.members = True
 client = commands.Bot(command_prefix="gimme ", intents=intents)
 
 # sexy help
-color = 0xb317da
+color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
 client.help_command = PrettyHelp(color=color)
 
 # rich presence
@@ -125,10 +125,9 @@ async def on_message(msg):
             msg.channel.name == '❓│1º_ano' or msg.channel.name == '❓│2º_ano' or msg.channel.name == '❓│3º-ano' or msg.channel.name == '❔│duvidas') and (
             ']' in m):
         vitrine = client.get_channel(853354421165228052)
-        cores = [0x38d42a, 0x1fd1e1, 0x1dda8b, 0x2f55d8, 0xe191e3, 0x6919e7, 0xc949a6]
         duvida = discord.Embed(title=msg.channel.name,
                                description='**' + msg.content + '** \n[Vê aqui](' + msg.jump_url + ') <a:leftarrow15:853378234405486593> <a:leftarrow15:853378234405486593>',
-                               color=random.choice(cores))
+                               color=int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16))
         if msg.attachments:
             image = msg.attachments[0].url
             duvida.set_image(url=image)
@@ -159,6 +158,12 @@ async def creator(ctx):
     await ctx.reply('https://github.com/LucasSexo/')
 
 
+@client.command(help="shows available emotes")
+async def emotes(ctx):
+    emb = discord.Embed(title = "All available emotes", timestamp=datetime.utcnow(), description = f"{list(dicionarios.EMOTES.keys())}")
+    emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
+    await ctx.reply(embed = emb)
+
 @client.command(help="it's domking")
 async def domking(ctx):
     await ctx.reply(
@@ -182,7 +187,7 @@ async def nudes(ctx):
 
     emb = discord.Embed(title = name, timestamp=datetime.utcnow())
     emb.set_image(url = url)
-    emb.color = 0xc4ffed
+    emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
 
     mp = await ctx.message.author.create_dm()
     await mp.send(embed = emb)
@@ -195,33 +200,12 @@ async def anon(ctx, *, arg):
     if isinstance(ctx.channel, discord.channel.DMChannel):      #isto está aqui puramente 
         desabafo = client.get_channel(796509327997403156)       #por segurança e evitar spam
         print('O {} desabafou'.format(ctx.message.author.name)) #nao irei nunca divulgar quem usou o comando!
-        desembed= discord.Embed(title="Anon says:", color= 0x2e69ff)
+        desembed= discord.Embed(title="Anon says:", color= int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16))
         desembed.description = arg
         
         await desabafo.send(embed = desembed)                                
 
 vaccination_max_age, vaccination_last_updated = None, None
-
-#@client.command(help="Checks the current max age of vaccination")
-#async def vacina(ctx):
-#    global vaccination_max_age, vaccination_last_updated
-#    now = datetime.now()
-#    update_interval_secs = 60
-#
-#    if not vaccination_last_updated or (now - vaccination_last_updated).seconds >= update_interval_secs:
-#        # Update the stored info
-#        url = 'https://covid19.min-saude.pt/pedido-de-agendamento/'
-#        res = requests.get(url)
-#        regexp_match = re.search('Tem (\d+) ou mais anos e ainda não foi vacinado\(a\)?', res.text)
-#        vaccination_max_age = regexp_match.group(1)
-#        vaccination_last_updated = datetime.now()
-#
-#    colourcaralho = [0x38d42a, 0x1fd1e1, 0x1dda8b, 0x2f55d8, 0xe191e3, 0x6919e7, 0xc949a6, 0x2e69ff]
-#    vacinaembed= discord.Embed(color= random.choice(colourcaralho))
-#    vacinaembed.description = (f"Idade max de vacinação atual: **{vaccination_max_age}**. Última atualização: {vaccination_last_updated}\n\n" 
-#                                   "Para mais informação visita:  [DGS](https://covid19.min-saude.pt/pedido-de-agendamento/)")
-#    vacinaembed.set_footer(text=f"Vacina-te!")
-#    await ctx.reply(embed = vacinaembed)
 
 @client.command(help='Sends a dm to a role')
 async def comm(ctx, role: discord.Role, *, content):

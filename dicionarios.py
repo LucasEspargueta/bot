@@ -99,5 +99,5 @@ EMOTES = {
     "TriDance": 'https://cdn.discordapp.com/attachments/822774646981263360/847237873232511036/TriDance.gif',
     "WutFace": "https://cdn.discordapp.com/attachments/822774646981263360/848672943415361566/wutface-transparent-1.png",
     "xqcL": "https://cdn.discordapp.com/attachments/759882556744663040/851789059532652544/6e5.png",
-    "Kappa": "https://i.imgur.com/cpzYXCI.png?1",
+    "Kappa": "https://cdn.discordapp.com/attachments/761254744693538857/899590074566574110/cpzYXCI.png",
 }

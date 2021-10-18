@@ -160,7 +160,7 @@ async def creator(ctx):
 
 @client.command(help="shows available emotes")
 async def emotes(ctx):
-    emb = discord.Embed(title = "All available emotes", timestamp=datetime.utcnow(), description = f"{list(dicionarios.EMOTES.keys())}")
+    emb = discord.Embed(title = "All available emotes", timestamp=datetime.utcnow(), description = ", ".join(dicionarios.EMOTES.keys()))
     emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
     await ctx.reply(embed = emb)
 

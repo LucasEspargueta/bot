@@ -139,39 +139,19 @@ async def on_message(msg):
         await vitrine.send(embed=duvida)
     await client.process_commands(msg)
 
-
-
-@client.slash_command(description='AWOOOOOOOOOOOO AND THE CUM WONT STOP'
-,guild_ids=[655826315777146901,759849368966004767])
-async def cum(ctx):
-    await ctx.respond('https://www.youtube.com/watch?v=uJ_1HMAGb4k')
-
-
-@client.slash_command(description="i mean",guild_ids=[655826315777146901,759849368966004767])
-async def gangnamstyle(ctx):
-    await ctx.respond('https://www.youtube.com/watch?v=9bZkp7q19f0')
-
-
 @client.slash_command(description="PUSH TO THE GITHUB",guild_ids=[655826315777146901,759849368966004767])
 async def git(ctx):
     await ctx.respond('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
 
-
 @client.slash_command(description="it's me",guild_ids=[655826315777146901,759849368966004767])
 async def creator(ctx):
     await ctx.respond('https://github.com/LucasSexo/')
-
 
 @client.slash_command(description="shows available emotes",guild_ids=[655826315777146901,759849368966004767])
 async def emotes(ctx):
     emb = discord.Embed(title = "All available emotes", timestamp=datetime.utcnow(), description = ", ".join(dicionarios.EMOTES.keys()))
     emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
     await ctx.respond(embed = emb)
-
-@client.slash_command(description="it's domking",guild_ids=[655826315777146901,759849368966004767])
-async def domking(ctx):
-    await ctx.respond(
-        'https://media.discordapp.net/attachments/759882556744663040/848589067305091102/makesweet-a1gvuu.gif')
 
 @client.slash_command(description = "sends nudes",guild_ids=[655826315777146901,759849368966004767])
 async def nudes(ctx):
@@ -196,8 +176,7 @@ async def nudes(ctx):
     mp = await ctx.message.author.create_dm()
     await mp.send(embed = emb)
     print('O {} tá down bad'.format(ctx.message.author.name))
-    
-    
+        
 #desabafo stuff
 @client.command()
 async def anon(ctx, *, arg):
@@ -211,7 +190,7 @@ async def anon(ctx, *, arg):
 
 vaccination_max_age, vaccination_last_updated = None, None
 
-@client.slash_command(description='Sends a dm to a role',guild_ids=[655826315777146901,759849368966004767])
+@client.slash_command(description='Sends a dm to a role (admin only)',guild_ids=[655826315777146901,759849368966004767])
 async def comm(ctx, role: discord.Role, *, content):
     embed = discord.Embed(title="Comunicado Server FEUP ⚡ ", description=content, colour=0x423abc)
     embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
@@ -220,7 +199,6 @@ async def comm(ctx, role: discord.Role, *, content):
         for m in ctx.guild.members:
             if role in m.roles:
                 await m.send(embed=embed)
-
     else:
         await ctx.send(ctx.author.mention + "you can't use that!")
 

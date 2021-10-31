@@ -174,7 +174,7 @@ async def nudes(ctx):
     emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
 
     await ctx.respond(embed = emb, ephemeral = True )
-    print('O {} tá down bad'.format(ctx.message.author.name))
+    print('O {} tá down bad'.format(ctx.author.name))
         
 #desabafo stuff
 @client.command()

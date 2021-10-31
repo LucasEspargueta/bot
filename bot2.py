@@ -173,9 +173,9 @@ async def nudes(ctx):
     emb.set_image(url = url)
     emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
 
-    mp = await ctx.message.author.create_dm()
+    mp = await ctx.message.user.create_dm()
     await mp.send(embed = emb)
-    print('O {} tá down bad'.format(ctx.message.author.name))
+    print('O {} tá down bad'.format(ctx.message.user.name))
         
 #desabafo stuff
 @client.command()
@@ -193,13 +193,13 @@ vaccination_max_age, vaccination_last_updated = None, None
 @client.slash_command(description='Sends a dm to a role (admin only)',guild_ids=[655826315777146901,759849368966004767])
 async def comm(ctx, role: discord.Role, *, content):
     embed = discord.Embed(title="Comunicado Server FEUP ⚡ ", description=content, colour=0x423abc)
-    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    embed.set_footer(icon_url=ctx.user.avatar_url, text=f"Requested by {ctx.user.name}")
     await ctx.message.delete()
-    if '832202769615552532' in str(ctx.author.id):
+    if '832202769615552532' in str(ctx.user.id):
         for m in ctx.guild.members:
             if role in m.roles:
                 await m.send(embed=embed)
     else:
-        await ctx.send(ctx.author.mention + "you can't use that!")
+        await ctx.send(ctx.user.mention + "you can't use that!")
 
 client.run(os.environ["token"])

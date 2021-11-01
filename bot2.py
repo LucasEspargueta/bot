@@ -54,10 +54,10 @@ async def status():
 
 @client.event
 async def on_ready():
-    
+    print('Vim-me!')
     global guild
     guild = client.get_guild(int(759849368966004767))
-
+    print(guild)
     await status()
 
 
@@ -88,6 +88,7 @@ async def time(ctx, command="TUGA"):
     newtime = datetime.now(timezone(dicionarios.TIMEZONES[command.upper()])) if command.upper() in dicionarios.TIMEZONES.keys() else None
     if newtime:
         current_time = newtime.strftime("%H:%M:%S")
+        print(str(timezone), current_time)
         await ctx.respond(current_time)
 
 @client.event
@@ -113,6 +114,7 @@ async def on_message(msg):
     if "balta" in msg.content.lower():
         num = random.randint(0, 100000)
         if num == 69420:
+            print("racismo")
             await msg.reply(
                 'https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
     if m.startswith('[') and (
@@ -195,6 +197,6 @@ async def comm(ctx, role: discord.Role, *, content):
                 await m.send(embed=embed)
         await ctx.respond("tá a dar (y)")
     else:
-        await ctx.respond(ctx.author.mention + "you can't use that!")
+        await ctx.respond(ctx.author.mention + " you can't use that!")
 
 client.run(os.environ["token"])

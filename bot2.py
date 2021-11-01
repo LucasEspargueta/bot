@@ -1,4 +1,5 @@
 import random
+from typing import Dict
 from discord import message
 from discord.ext import commands
 from pretty_help import PrettyHelp
@@ -29,6 +30,7 @@ current_time = now.strftime("%H:%M:%S")
 intents = discord.Intents.all()
 intents.members = True
 client = commands.Bot(command_prefix="gimme ", intents=intents)
+servers = [655826315777146901,759849368966004767]
 
 # sexy help
 color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
@@ -55,13 +57,13 @@ async def on_ready():
     
     global guild
     guild = client.get_guild(int(759849368966004767))
-    
+
     await status()
 
 
 @client.slash_command(description="Gives you a random screenshot from the www, if you see anything inappropriate, please report it!"
-,guild_ids=[655826315777146901,759849368966004767])
-async def print(ctx):
+,guild_ids=servers)
+async def screenshot(ctx):
     lista = ["a", "b", "c", "d", "e", "f",
              "g", "h", "i", "j", "k", "l",
              "m", "n", "o", "p", "q", "r",
@@ -71,7 +73,7 @@ async def print(ctx):
 
 
 @client.slash_command(description='Gives you a random video from the www, if you see anything inappropriate, please report it!'
-,guild_ids=[655826315777146901,759849368966004767])
+,guild_ids=servers)
 async def video(ctx):
     lista = ["a", "b", "c", "d", "e", "f",
              "g", "h", "i", "j", "k", "l",
@@ -80,52 +82,41 @@ async def video(ctx):
              "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     await ctx.respond("https://streamable.com/" + "".join(list(random.choices(lista, k=6))))
 
-
 @client.slash_command(description='Gives you the time in different timezones. Try EST, PST, GMT, WET, CST & CET'
-,guild_ids=[655826315777146901,759849368966004767])
+,guild_ids=servers)
 async def time(ctx, command="TUGA"):
     newtime = datetime.now(timezone(dicionarios.TIMEZONES[command.upper()])) if command.upper() in dicionarios.TIMEZONES.keys() else None
-
     if newtime:
         current_time = newtime.strftime("%H:%M:%S")
-        print(str(timezone), current_time)
         await ctx.respond(current_time)
-
 
 @client.event
 async def on_message(msg):
     m = msg.content.lower()
+    dict={
+        "booba gif": 'https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif',
+        "peras actually": "https://cdn.discordapp.com/attachments/759882556744663040/851501480317026304/caption.png",
+        "big homies": "https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png",
+        "ahegao gigante": "https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png",
+        "peraschamp": "https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg",
+        "letroll gigante": "https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg",
+        "this gigante": "https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png"
+    }
     if msg.author == client.user:
         return
     a = [dicionarios.EMOTES[s] for s in msg.content.split() if s in dicionarios.EMOTES]
     if a:
         await msg.channel.send("\n".join(a[:10]))
-    if "booba gif" in msg.content.lower():
-        await msg.reply('https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif')
-    if "peras actually" in msg.content.lower():
-        await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/851501480317026304/caption.png")
-    if "big homies" in msg.content.lower():
-        await msg.reply("https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png")
-    if re.search(r"\bsimp\b", msg.content, flags=re.I) is not None:
-        await msg.reply("https://cdn.discordapp.com/attachments/759903575748640798/843586394642317352/tEYCU9Ew.png")
-    if "ahegao gigante" in msg.content.lower():
-        await msg.reply(
-            "https://cdn.discordapp.com/attachments/786571345072357376/842871472418193408/81376121441170228311.png")
-    if "peraschamp" in msg.content.lower():
-        await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/842518533888147486/unknown-2.jpg")
-    if "letroll gigante" in msg.content.lower():
-        await msg.reply(
-            "https://cdn.discordapp.com/attachments/759882556744663040/842824588042698762/IMG-20210505-WA0018_1.jpg")
-    if "this gigante" in msg.content.lower():
-        await msg.reply("https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png")
-    elif "balta" in msg.content.lower():
+    for i in dict:
+        if i in m:
+            await msg.reply(dict[i])
+    if "balta" in msg.content.lower():
         num = random.randint(0, 100000)
         if num == 69420:
             await msg.reply(
                 'https://cdn.discordapp.com/attachments/759882556744663040/822255453677289482/SPOILER_unknown.png')
-            print('racismo')
     if m.startswith('[') and (
-            msg.channel.name == '❓│1º_ano' or msg.channel.name == '❓│2º_ano' or msg.channel.name == '❓│3º-ano' or msg.channel.name == '❔│duvidas') and (
+            msg.channel.id in (759883187508871188, 808348984053465118, 808347735580868688, 805416620049956875)) and (
             ']' in m):
         vitrine = client.get_channel(853354421165228052)
         duvida = discord.Embed(title=msg.channel.name,
@@ -139,21 +130,21 @@ async def on_message(msg):
         await vitrine.send(embed=duvida)
     await client.process_commands(msg)
 
-@client.slash_command(description="PUSH TO THE GITHUB",guild_ids=[655826315777146901,759849368966004767])
+@client.slash_command(description="PUSH TO THE GITHUB",guild_ids=servers)
 async def git(ctx):
     await ctx.respond('https://media.giphy.com/media/OOXp2e1gCnfj6jGxN9/giphy.gif')
 
-@client.slash_command(description="it's me",guild_ids=[655826315777146901,759849368966004767])
+@client.slash_command(description="it's me",guild_ids=servers)
 async def creator(ctx):
     await ctx.respond('https://github.com/LucasSexo/')
 
-@client.slash_command(description="shows available emotes",guild_ids=[655826315777146901,759849368966004767])
+@client.slash_command(description="shows available emotes",guild_ids=servers)
 async def emotes(ctx):
     emb = discord.Embed(title = "All available emotes", timestamp=datetime.utcnow(), description = ", ".join(dicionarios.EMOTES.keys()))
     emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
     await ctx.respond(embed = emb)
 
-@client.slash_command(description = "sends nudes",guild_ids=[655826315777146901,759849368966004767])
+@client.slash_command(description = "sends nudes",guild_ids=servers)
 async def nudes(ctx):
     subreddit = await reddit.subreddit("gonewild")
     all_subs = []
@@ -172,31 +163,35 @@ async def nudes(ctx):
     emb = discord.Embed(title = name, timestamp=datetime.utcnow())
     emb.set_image(url = url)
     emb.color = int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16)
-    
-    print('O {} tá down bad'.format(ctx.author.name))
+    print('{} is own bad...'.format(ctx.author.name))
     await ctx.respond(embed = emb, ephemeral = True )
         
 #desabafo stuff
 @client.command()
-async def anon(ctx, *, arg):
-    if isinstance(ctx.channel, discord.channel.DMChannel):      #isto está aqui puramente 
-        desabafo = client.get_channel(796509327997403156)       #por segurança e evitar spam
-        print('O {} desabafou'.format(ctx.message.author.name)) #nao irei nunca divulgar quem usou o comando!
+async def anon(ctx, *, arg):                                    #isto está aqui puramente
+    if isinstance(ctx.channel, discord.channel.DMChannel):      #por segurança e evitar spam 
+        desabafo = client.get_channel(796509327997403156)       #nao irei nunca divulgar quem usou o comando!                                                     
         desembed= discord.Embed(title="Anon says:", color= int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16))
         desembed.description = arg
-        
-        await desabafo.send(embed = desembed)                                
+        print('{} vented'.format(ctx.author.name))
+        await desabafo.send(embed = desembed)  
 
-vaccination_max_age, vaccination_last_updated = None, None
+@client.slash_command(description="Permite usar o canal do desabafo em anonimo", guild_ids=servers)  
+async def vent(ctx, *, arg):
+    desabafo=client.get_channel(796509327997403156)
+    desembed= discord.Embed(title="Anon says:", color= int(''.join([random.choice('0123456789ABCDEF') for j in range(6)]), base=16))
+    desembed.description = arg
+    print('{} vented'.format(ctx.author.name))
+    await desabafo.send(embed = desembed)  
 
-@client.slash_command(description='Sends a dm to a role (admin only)',guild_ids=[655826315777146901,759849368966004767])
+@client.slash_command(description='Sends a dm to a role (admin only)',guild_ids=servers)
 async def comm(ctx, role: discord.Role, *, content):
     await ctx.defer()
-    embed = discord.Embed(title="Comunicado Server FEUP ⚡ ", description=content, colour=0x423abc)
-    embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    embed = discord.Embed(title="Comunicado Server FEUP  ", description=content, colour=0x423abc)
+    embed.set_footer(icon_url=ctx.author.display_avatar , text=f"Requested by {ctx.author.name}")
     if '832202769615552532' in str(ctx.author.id):
         for m in ctx.guild.members:
-            if role in m.roles:
+            if role in m.roles and not m.bot:
                 await m.send(embed=embed)
         await ctx.respond("tá a dar (y)")
     else:

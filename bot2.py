@@ -122,7 +122,7 @@ async def on_message(msg):
         if msg.attachments:
             image = msg.attachments[0].url
             duvida.set_image(url=image)
-        duvida.set_footer(icon_url=msg.author.avatar_url,
+        duvida.set_footer(icon_url=msg.author.display_avatarl,
                           text=f"Copia a pergunta para a barra de pesquisas para ver se já tem resposta! ")
         await vitrine.send(embed=duvida)
     await client.process_commands(msg)

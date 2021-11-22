@@ -89,7 +89,7 @@ async def time(ctx, command="TUGA"):
 @client.event
 async def on_message(msg):
     m = msg.content.lower()
-    dict={
+    triggermsg={
         "booba gif": 'https://i1.wp.com/media.tenor.com/images/3634fc2d789bdb041ec2d3088100ba7e/tenor.gif',
         "peras actually": "https://cdn.discordapp.com/attachments/759882556744663040/851501480317026304/caption.png",
         "big homies": "https://cdn.discordapp.com/attachments/786571345072357376/843609641078620220/homies.png",
@@ -103,9 +103,9 @@ async def on_message(msg):
     a = [dicionarios.EMOTES[s] for s in msg.content.split() if s in dicionarios.EMOTES]
     if a:
         await msg.channel.send("\n".join(a[:10]))
-    for i in dict:
+    for i in triggermsg:
         if i in m:
-            await msg.reply(dict[i])
+            await msg.reply(triggermsg[i])
     if "balta" in msg.content.lower():
         num = random.randint(0, 100000)
         if num == 69420:

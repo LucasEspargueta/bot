@@ -1,6 +1,8 @@
 import { ApplicationCommandOptionType } from "discord-api-types"
 import DiscordJS, { CommandInteraction, Intents } from "discord.js"
 import dotenvflow from 'dotenv-flow'
+import {EMOTES} from "./dicts"
+
 dotenvflow.config()
 
 const client = new DiscordJS.Client({
@@ -74,9 +76,25 @@ client.on('ready', async () => {
             id: "759882119799111681", type: "ROLE", permission: true,
         }]
     });
+    commands?.create({
+        name: "members",
+        description: "Lists all the members of the server",
+    })
 })
 
-function screenshotfn() {
+client.on("messageCreate", async (message) => {
+    if (message.author.bot) return;
+    const emotes: Set<string> = new Set();
+    message.content?.split(" ").forEach(word => {
+        if (word in EMOTES) {
+            emotes.add(EMOTES[word])
+        }
+    });
+    if (emotes.size)
+    message.reply(`${[...emotes].join(" ")}`)
+})
+
+const screenshotfn =() => {
     const lista = ["a", "b", "c", "d", "e", "f",
         "g", "h", "i", "j", "k", "l",
         "m", "n", "o", "p", "q", "r",
@@ -147,6 +165,17 @@ client.on('interactionCreate', async (interaction) => {
             break;
         case "comm":
             commfn(interaction)
+            break;
+        case "members":
+            const guild = client.guilds.cache.get("759849368966004767")
+            if (guild) {
+                const guildmembers = (await guild.members.fetch())
+                const members = guildmembers.filter( m=> !m.user.bot).size
+                const mbots = guildmembers.filter( m=> m.user.bot).size
+                interaction.reply({
+                    content: `There are ${members} members in the server! And ${mbots} bots!`
+                })
+            }   
             break;
         default:
             break;

@@ -1,9 +1,10 @@
 import { ApplicationCommandOptionType } from "discord-api-types"
-import DiscordJS, { CommandInteraction, Intents } from "discord.js"
+import DiscordJS, { CommandInteraction, Intents, TextChannel } from "discord.js"
 import dotenvflow from 'dotenv-flow'
-import {EMOTES} from "./dicts"
+import { EMOTES } from "./dicts"
 
 dotenvflow.config()
+const canaisduvida = ["759883187508871188", "808348984053465118", "808347735580868688", "805416620049956875"]
 
 const client = new DiscordJS.Client({
     intents: [
@@ -24,10 +25,11 @@ const client = new DiscordJS.Client({
         Intents.FLAGS.DIRECT_MESSAGE_TYPING,
     ]
 })
-
+let vitrine: DiscordJS.TextChannel
 client.on('ready', async () => {
     console.log("Tou ligado bro siga siga!")
     const guildID = '759849368966004767'
+    vitrine = (await client.channels.fetch("853354421165228052"))! as DiscordJS.TextChannel
     const guild = client.guilds.cache.get(guildID)
     let commands
     if (guild) {
@@ -82,6 +84,7 @@ client.on('ready', async () => {
     })
 })
 
+//thing to send the emotes
 client.on("messageCreate", async (message) => {
     if (message.author.bot) return;
     const emotes: Set<string> = new Set();
@@ -91,10 +94,25 @@ client.on("messageCreate", async (message) => {
         }
     });
     if (emotes.size)
-    message.reply(`${[...emotes].join(" ")}`)
+        message.reply(`${[...emotes].join(" ")}`)
+    //vitrine stuff
+    if (/^\[.+\].*$/.test(message.content) && canaisduvida.includes(message.channel.id)) {
+        const embed = new DiscordJS.MessageEmbed({
+            title: (message.channel as TextChannel).name,
+            description: '**' + message.content + '** \n[Vê aqui](' + message.url + ') <a:leftarrow15:853378234405486593> <a:leftarrow15:853378234405486593>',
+            color: parseInt(randomColor().replace("#", "0x"), 16),
+            timestamp: new Date(),
+            image: message.attachments.size ? { url: message.attachments.first()!.url } : undefined,
+            footer: {
+                text: "Copia a pergunta para a barra de pesquisas para ver se já tem resposta! ",
+                icon_url: message.author.avatarURL() ?? undefined,
+            }
+        })
+        vitrine.send({ embeds: [embed] })
+    }
 })
 
-const screenshotfn =() => {
+const screenshotfn = () => {
     const lista = ["a", "b", "c", "d", "e", "f",
         "g", "h", "i", "j", "k", "l",
         "m", "n", "o", "p", "q", "r",
@@ -149,6 +167,7 @@ const commfn = async (interaction: CommandInteraction) => {
     })
 }
 
+//commands
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) {
         return
@@ -158,6 +177,7 @@ client.on('interactionCreate', async (interaction) => {
         case "screenshot":
             interaction.reply({
                 content: ('https://prnt.sc/' + screenshotfn()),
+                ephemeral: true
             })
             break;
         case "vent":
@@ -170,12 +190,12 @@ client.on('interactionCreate', async (interaction) => {
             const guild = client.guilds.cache.get("759849368966004767")
             if (guild) {
                 const guildmembers = (await guild.members.fetch())
-                const members = guildmembers.filter( m=> !m.user.bot).size
-                const mbots = guildmembers.filter( m=> m.user.bot).size
+                const members = guildmembers.filter(m => !m.user.bot).size
+                const mbots = guildmembers.filter(m => m.user.bot).size
                 interaction.reply({
                     content: `There are ${members} members in the server! And ${mbots} bots!`
                 })
-            }   
+            }
             break;
         default:
             break;

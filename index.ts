@@ -1,7 +1,8 @@
-import { ApplicationCommandOptionType } from "discord-api-types"
-import DiscordJS, { CommandInteraction, Intents, TextChannel } from "discord.js"
-import dotenvflow from 'dotenv-flow'
-import { EMOTES } from "./dicts"
+import { ApplicationCommandOptionType } from "discord-api-types";
+import DiscordJS, { CommandInteraction, Intents, TextChannel } from "discord.js";
+import dotenvflow from 'dotenv-flow';
+import { EMOTES } from "./dicts";
+import * as youtube from "youtube-random-video";
 
 dotenvflow.config()
 const canaisduvida = ["759883187508871188", "808348984053465118", "808347735580868688", "805416620049956875"]
@@ -82,132 +83,144 @@ client.on('ready', async () => {
         name: "members",
         description: "Lists all the members of the server",
     })
-})
+    commands?.create({
+        name: "search",
+        description: "Searches for a video on youtube",
+    })
 
-//thing to send the emotes
-client.on("messageCreate", async (message) => {
-    if (message.author.bot) return;
-    const emotes: Set<string> = new Set();
-    message.content?.split(" ").forEach(word => {
-        if (word in EMOTES) {
-            emotes.add(EMOTES[word])
+    //thing to send the emotes and trigger messages
+    client.on("messageCreate", async (message) => {
+        if (message.author.bot) return;
+        const emotes: Set<string> = new Set();
+        message.content?.split(" ").forEach(word => {
+            if (word in EMOTES) {
+                emotes.add(EMOTES[word])
+            }
+        });
+        if (emotes.size)
+            message.reply(`${[...emotes].join(" ")}`)
+        //vitrine stuff
+        if (/^\[.+\].*$/.test(message.content) && canaisduvida.includes(message.channel.id)) {
+            const embed = new DiscordJS.MessageEmbed({
+                title: (message.channel as TextChannel).name,
+                description: '**' + message.content + '** \n[Vê aqui](' + message.url + ') <a:leftarrow15:853378234405486593> <a:leftarrow15:853378234405486593>',
+                color: parseInt(randomColor().replace("#", "0x"), 16),
+                timestamp: new Date(),
+                image: message.attachments.size ? { url: message.attachments.first()!.url } : undefined,
+                footer: {
+                    text: "Copia a pergunta para a barra de pesquisas para ver se já tem resposta! ",
+                    icon_url: message.author.avatarURL() ?? undefined,
+                }
+            })
+            vitrine.send({ embeds: [embed] })
         }
-    });
-    if (emotes.size)
-        message.reply(`${[...emotes].join(" ")}`)
-    //vitrine stuff
-    if (/^\[.+\].*$/.test(message.content) && canaisduvida.includes(message.channel.id)) {
+    })
+
+    const screenshotfn = () => {
+        const lista = ["a", "b", "c", "d", "e", "f",
+            "g", "h", "i", "j", "k", "l",
+            "m", "n", "o", "p", "q", "r",
+            "s", "t", "u", "v", "x", "y", "z",
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+        return lista.sort(() => Math.random() - Math.random()).slice(0, 6).join("")
+    }
+    //random color generator
+    const randomColor = () => {
+        const letters = '0123456789ABCDEF'
+        let color = '#'
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)]
+        }
+        return color
+    }
+
+    const ventfn = async (interaction: CommandInteraction) => {
+        const desabafo = await client.channels.fetch("796509327997403156")
         const embed = new DiscordJS.MessageEmbed({
-            title: (message.channel as TextChannel).name,
-            description: '**' + message.content + '** \n[Vê aqui](' + message.url + ') <a:leftarrow15:853378234405486593> <a:leftarrow15:853378234405486593>',
+            title: "Anon says",
+            description: interaction.options.getString("message", true),
             color: parseInt(randomColor().replace("#", "0x"), 16),
             timestamp: new Date(),
-            image: message.attachments.size ? { url: message.attachments.first()!.url } : undefined,
-            footer: {
-                text: "Copia a pergunta para a barra de pesquisas para ver se já tem resposta! ",
-                icon_url: message.author.avatarURL() ?? undefined,
-            }
         })
-        vitrine.send({ embeds: [embed] })
-    }
-})
-
-const screenshotfn = () => {
-    const lista = ["a", "b", "c", "d", "e", "f",
-        "g", "h", "i", "j", "k", "l",
-        "m", "n", "o", "p", "q", "r",
-        "s", "t", "u", "v", "x", "y", "z",
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-    return lista.sort(() => Math.random() - Math.random()).slice(0, 6).join("")
-}
-//random color generator
-const randomColor = () => {
-    const letters = '0123456789ABCDEF'
-    let color = '#'
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)]
-    }
-    return color
-}
-
-const ventfn = async (interaction: CommandInteraction) => {
-    const desabafo = await client.channels.fetch("796509327997403156")
-    const embed = new DiscordJS.MessageEmbed({
-        title: "Anon says",
-        description: interaction.options.getString("message", true),
-        color: parseInt(randomColor().replace("#", "0x"), 16),
-        timestamp: new Date(),
-    })
-    if (desabafo?.isText()) {
-        desabafo.send({ embeds: [embed] })
-    }
-    interaction.reply({
-        ephemeral: true,
-        content: "Message sent!"
-    })
-}
-
-const commfn = async (interaction: CommandInteraction) => {
-    const role = interaction.options.getRole("role", true)
-
-    if (role instanceof DiscordJS.Role) {
-        role.members.forEach(member => {
-            member.send(interaction.options.getString("message", true))
-        });
+        if (desabafo?.isText()) {
+            desabafo.send({ embeds: [embed] })
+        }
         interaction.reply({
             ephemeral: true,
             content: "Message sent!"
         })
-        return
-
     }
-    interaction.reply({
-        ephemeral: true,
-        content: "Message not sent!"
-    })
-}
 
-//commands
-client.on('interactionCreate', async (interaction) => {
-    if (!interaction.isCommand()) {
-        return
-    }
-    const { commandName } = interaction
-    switch (commandName) {
-        case "screenshot":
+    const commfn = async (interaction: CommandInteraction) => {
+        const role = interaction.options.getRole("role", true)
+
+        if (role instanceof DiscordJS.Role) {
+            role.members.forEach(member => {
+                member.send(interaction.options.getString("message", true))
+            });
             interaction.reply({
-                content: ('https://prnt.sc/' + screenshotfn()),
-                ephemeral: true
+                ephemeral: true,
+                content: "Message sent!"
             })
-            break;
-        case "vent":
-            ventfn(interaction)
-            break;
-        case "comm":
-            commfn(interaction)
-            break;
-        case "members":
-            const guild = client.guilds.cache.get("759849368966004767")
-            if (guild) {
-                const guildmembers = (await guild.members.fetch())
-                const members = guildmembers.filter(m => !m.user.bot).size
-                const mbots = guildmembers.filter(m => m.user.bot).size
-                interaction.reply({
-                    content: `There are ${members} members in the server! And ${mbots} bots!`
-                })
-            }
-            break;
-        default:
-            break;
-    }
-})
+            return
 
+        }
+        interaction.reply({
+            ephemeral: true,
+            content: "Message not sent!"
+        })
+    }
+
+    //commands
+    client.on('interactionCreate', async (interaction) => {
+        if (!interaction.isCommand()) {
+            return
+        }
+        const { commandName } = interaction
+        switch (commandName) {
+            case "screenshot":
+                interaction.reply({
+                    content: ('https://prnt.sc/' + screenshotfn()),
+                    ephemeral: true
+                })
+                break;
+            case "vent":
+                ventfn(interaction)
+                break;
+            case "comm":
+                commfn(interaction)
+                break;
+            case "members":
+                const guild = client.guilds.cache.get("759849368966004767")
+                if (guild) {
+                    const guildmembers = (await guild.members.fetch())
+                    const members = guildmembers.filter(m => !m.user.bot).size
+                    const mbots = guildmembers.filter(m => m.user.bot).size
+                    interaction.reply({
+                        content: `There are ${members} members in the server! And ${mbots} bots!`
+                    })
+                }
+                break;
+            case "search":
+                youtube.getRandomVid(process.env.YOUTUBE_API_KEY, function (_, data) {
+                    //data is a JSON object
+                    const url = data.id.videoId
+                    interaction.reply({
+                        content: `https://www.youtube.com/watch?v=${url}`,
+                    })
+                })
+                break;
+            default:
+                break;
+        }
+    })
+})
 client.login(process.env.MAMAS).then(() => {
     client.user?.setPresence({
         activities: [{
             name: 'FEUPers behaviour',
             type: 'WATCHING'
         }],
-        status: 'idle'
+        status: 'dnd'
     });
 });

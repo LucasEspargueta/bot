@@ -203,8 +203,15 @@ client.on('ready', async () => {
                 }
                 break;
             case "search":
-                youtube.getRandomVid(process.env.YOUTUBE_API_KEY, function (_, data) {
+                youtube.getRandomVid(process.env.YOUTUBE_API_KEY, function (err, data) {
                     //data is a JSON object
+                    if (err) {
+                        console.error(err)
+                        interaction.reply({
+                            content: "Error",
+                        })
+                        return
+                    }
                     const url = data.id.videoId
                     interaction.reply({
                         content: `https://www.youtube.com/watch?v=${url}`,

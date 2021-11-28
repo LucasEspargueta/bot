@@ -149,6 +149,7 @@ client.on('ready', async () => {
             ephemeral: true,
             content: "Message sent!"
         })
+        console.log(interaction.member.user.username + " sent a message in the vent channel")
     }
 
     const commfn = async (interaction: CommandInteraction) => {

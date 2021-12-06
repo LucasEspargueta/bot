@@ -1,8 +1,8 @@
 import { ApplicationCommandOptionType } from "discord-api-types";
-import DiscordJS, { CommandInteraction, Intents, TextChannel } from "discord.js";
+import DiscordJS, { CommandInteraction, GuildMember, Intents, TextChannel } from "discord.js";
 import dotenvflow from 'dotenv-flow';
-import { EMOTES } from "./dicts";
 import * as youtube from "youtube-random-video";
+import { EMOTES } from "./dicts";
 
 dotenvflow.config()
 const canaisduvida = ["759883187508871188", "808348984053465118", "808347735580868688", "805416620049956875"]
@@ -87,6 +87,10 @@ client.on('ready', async () => {
         name: "search",
         description: "Searches for a video on youtube",
     })
+    commands?.create({
+        name: "joined",
+        description: "Tells you when you joined the server",
+    })
 
     //thing to send the emotes and trigger messages
     client.on("messageCreate", async (message) => {
@@ -114,7 +118,20 @@ client.on('ready', async () => {
             })
             vitrine.send({ embeds: [embed] })
         }
+        if (message.content.startsWith("poll: ")) {
+            if (!message.content.includes("|")) {
+                await message.react("👍")
+                await message.react("👎")
+            } else {
+                const poll_react = ['🇦', '🇧', '🇨', '🇩', '🇪', '🇫', '🇬', '🇭', '🇮', '🇯']
+                for (const emoji of poll_react.splice(0, message.content.split("|").length)) {
+                    await message.react(emoji)
+                }
+            }
+        }
     })
+
+
 
     const screenshotfn = () => {
         const lista = ["a", "b", "c", "d", "e", "f",
@@ -218,6 +235,20 @@ client.on('ready', async () => {
                     })
                 })
                 break;
+            case "joined":
+                const joined = (interaction.member as GuildMember).joinedAt
+                const joineddate = new Date(joined ?? new Date())
+                const now = new Date()
+                const diff = now.getTime() - joineddate.getTime()
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+                interaction.reply({
+                    content: `${interaction.member.user} joined the server ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds ago!`,
+                    ephemeral: true
+                })
+                break;
             default:
                 break;
         }
@@ -226,9 +257,9 @@ client.on('ready', async () => {
 client.login(process.env.MAMAS).then(() => {
     client.user?.setPresence({
         activities: [{
-            name: 'FEUPers behaviour',
-            type: 'WATCHING'
+            name: 'Facebook Marketplace',
+            type: 'STREAMING'
         }],
-        status: 'dnd'
+        status: 'online'
     });
 });

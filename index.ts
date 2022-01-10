@@ -91,6 +91,10 @@ client.on('ready', async () => {
         name: "joined",
         description: "Tells you when you joined the server",
     })
+    commands?.create({
+        name: "cls",
+        description: "Clears the screen",
+    });
 
     //thing to send the emotes and trigger messages
     client.on("messageCreate", async (message) => {
@@ -131,7 +135,9 @@ client.on('ready', async () => {
         }
     })
 
-
+    const cls = () => {
+        return String("‍‍‍‍\n");
+    }
 
     const screenshotfn = () => {
         const lista = ["a", "b", "c", "d", "e", "f",
@@ -207,6 +213,11 @@ client.on('ready', async () => {
                 break;
             case "comm":
                 commfn(interaction)
+                break;
+            case "cls":
+                interaction.reply({
+                    content: (cls().repeat(100)),
+                })
                 break;
             case "members":
                 const guild = client.guilds.cache.get("759849368966004767")

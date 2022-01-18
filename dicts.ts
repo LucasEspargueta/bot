@@ -76,4 +76,5 @@ export const EMOTES: Record<string,string> = {
     "thisgigante": "https://cdn.discordapp.com/attachments/759882556744663040/838739007415386112/this.png",
     "nerdgif": "https://media.discordapp.net/attachments/650773853093494824/899271247706325002/image0-11.gif",
     "pepeLike": "https://cdn.discordapp.com/attachments/879426936756113408/930257633414348810/834616698954711120.png",
+    "Clueless": "https://cdn.betterttv.net/emote/60419081306b602acc5972c9/3x",
 }

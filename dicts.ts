@@ -78,4 +78,5 @@ export const EMOTES: Record<string,string> = {
     "pepeLike": "https://cdn.discordapp.com/attachments/879426936756113408/930257633414348810/834616698954711120.png",
     "Clueless": "https://cdn.betterttv.net/emote/60419081306b602acc5972c9/3x",
     "Prayge": "https://cdn.frankerfacez.com/emoticon/625520/4",
+    "vacuna": "https://cdn.discordapp.com/attachments/913610098012717116/932400701999546398/FHYwlB6XEAISP7P.png",
 }

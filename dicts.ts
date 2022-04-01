@@ -80,4 +80,5 @@ export const EMOTES: Record<string,string> = {
     "Prayge": "https://cdn.frankerfacez.com/emoticon/625520/4",
     "vacuna": "https://cdn.discordapp.com/attachments/913610098012717116/932400701999546398/FHYwlB6XEAISP7P.png",
     "Despair": "https://i.kym-cdn.com/photos/images/newsfeed/001/996/641/bc2.jpg",
+    "HUH": "https://cdn.frankerfacez.com/emoticon/660211/4",
 }

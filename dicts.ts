@@ -83,5 +83,5 @@ export const EMOTES: Record<string,string> = {
     "HUH": "https://cdn.frankerfacez.com/emoticon/660211/4",
     "xqcSus": "https://c.tenor.com/s-aKUplXynUAAAAM/xqc-sus-xqc.gif",
     "nerdpic": "https://cdn.discordapp.com/attachments/879426936756113408/962920126284451901/unknown.png",
-    "ben": "https://pbs.twimg.com/media/FRB2gc0XMAI6JYE?format=jpg&name=large",
+    "ben": "https://cdn.discordapp.com/attachments/879426936756113408/968196689708056717/unknown.png",
 }

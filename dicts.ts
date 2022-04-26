@@ -82,7 +82,7 @@ export const EMOTES: Record<string,string> = {
     "Despair": "https://i.kym-cdn.com/photos/images/newsfeed/001/996/641/bc2.jpg",
     "HUH": "https://cdn.frankerfacez.com/emoticon/660211/4",
     "xqcSus": "https://c.tenor.com/s-aKUplXynUAAAAM/xqc-sus-xqc.gif",
-    "ben": "https://cdn.discordapp.com/attachments/822774646981263360/968655956860895233/unknown.png",
+    "bæn": "https://cdn.discordapp.com/attachments/822774646981263360/968655956860895233/unknown.png",
     "nerdpic": "https://cdn.discordapp.com/attachments/879426936756113408/962920126284451901/unknown.png",
     
 }

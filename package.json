@@ -23,7 +23,7 @@
     "@discordjs/rest": "^0.5.0",
     "@types/dotenv-flow": "^3.2.0",
     "@types/node": "^17.0.40",
-    "discord-api-types": "^0.33.3",
+    "discord-api-types": "^0.33.4",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.1",
     "dotenv-flow": "^3.2.0",

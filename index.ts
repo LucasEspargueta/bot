@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType } from "discord-api-types";
+import { ApplicationCommandOptionType } from "discord-api-types/v10";
 import DiscordJS, { CommandInteraction, GuildMember, Intents, TextChannel } from "discord.js";
 import dotenvflow from 'dotenv-flow';
 import * as youtube from "youtube-random-video";
@@ -24,6 +24,7 @@ const client = new DiscordJS.Client({
         Intents.FLAGS.DIRECT_MESSAGES,
         Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         Intents.FLAGS.DIRECT_MESSAGE_TYPING,
+        Intents.FLAGS.GUILD_SCHEDULED_EVENTS,
     ]
 })
 let vitrine: DiscordJS.TextChannel
@@ -172,7 +173,7 @@ client.on('ready', async () => {
             ephemeral: true,
             content: "Message sent!"
         })
-        console.log(interaction.member.user.username + " sent a message in the vent channel")
+        console.log(interaction.member?.user.username + " sent a message in the vent channel")
     }
 
     const commfn = async (interaction: CommandInteraction) => {
@@ -256,7 +257,7 @@ client.on('ready', async () => {
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000)
                 interaction.reply({
-                    content: `${interaction.member.user} joined the server ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds ago!`,
+                    content: `${interaction.member?.user} joined the server ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds ago!`,
                     ephemeral: true
                 })
                 break;

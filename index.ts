@@ -1,5 +1,5 @@
-import { ApplicationCommandOptionType } from "discord-api-types/v10";
 import DiscordJS, { CommandInteraction, GuildMember, Intents, TextChannel } from "discord.js";
+import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 import dotenvflow from 'dotenv-flow';
 import * as youtube from "youtube-random-video";
 import { EMOTES } from "./dicts";
@@ -24,7 +24,6 @@ const client = new DiscordJS.Client({
         Intents.FLAGS.DIRECT_MESSAGES,
         Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         Intents.FLAGS.DIRECT_MESSAGE_TYPING,
-        Intents.FLAGS.GUILD_SCHEDULED_EVENTS,
     ]
 })
 let vitrine: DiscordJS.TextChannel
@@ -33,12 +32,8 @@ client.on('ready', async () => {
     const guildID = '759849368966004767'
     vitrine = (await client.channels.fetch("853354421165228052"))! as DiscordJS.TextChannel
     const guild = client.guilds.cache.get(guildID)
-    let commands
-    if (guild) {
-        commands = guild.commands
-    } else {
-        commands = client.application?.commands
-    }
+    let commands = guild?.commands ?? client.application?.commands;
+    
     commands?.create({
         name: "screenshot",
         description: "Shows you a random screenshot from the web, if you see anything inappropriate please report it.",
@@ -50,36 +45,38 @@ client.on('ready', async () => {
             {
                 name: "message",
                 description: "The message you want to send",
-                type: ApplicationCommandOptionType.String,
+                type: ApplicationCommandOptionTypes.STRING,
                 required: true,
             },
         ]
     });
-    (await commands?.create({
+    // (await 
+    commands?.create({
         name: "comm",
         description: "Admin only command",
         options: [
             {
                 name: "role",
                 description: "The role you want to send the message to",
-                type: ApplicationCommandOptionType.Role,
+                type: ApplicationCommandOptionTypes.ROLE,
                 required: true,
             },
             {
                 name: "message",
                 description: "The message you want to send",
-                type: ApplicationCommandOptionType.String,
+                type: ApplicationCommandOptionTypes.STRING,
                 required: true,
             },
         ],
         defaultPermission: false
 
-    }))?.permissions.add({
-        guild: guildID,
-        permissions: [{
-            id: "759882119799111681", type: "ROLE", permission: true,
-        }]
-    });
+    })
+    // )?.permissions.add({
+    //     guild: guildID,
+    //     permissions: [{
+    //         id: "759882119799111681", type: "ROLE", permission: true,
+    //     }]
+    // });
     commands?.create({
         name: "members",
         description: "Lists all the members of the server",

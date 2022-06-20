@@ -84,5 +84,6 @@ export const EMOTES: Record<string,string> = {
     "xqcSus": "https://c.tenor.com/s-aKUplXynUAAAAM/xqc-sus-xqc.gif",
     "bæn": "https://cdn.discordapp.com/attachments/822774646981263360/968655956860895233/unknown.png",
     "nerdpic": "https://cdn.discordapp.com/attachments/879426936756113408/962920126284451901/unknown.png",
-    
+    "BatChest":"https://cdn.discordapp.com/attachments/879426936756113408/988248178748948530/unknown.png",
+    "CookieFull":"https://cdn.discordapp.com/attachments/759882556744663040/984249422017863770/unknown.png",
 }

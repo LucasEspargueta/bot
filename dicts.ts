@@ -86,4 +86,5 @@ export const EMOTES: Record<string,string> = {
     "nerdpic": "https://cdn.discordapp.com/attachments/879426936756113408/962920126284451901/unknown.png",
     "BatChest":"https://cdn.discordapp.com/attachments/879426936756113408/988248178748948530/unknown.png",
     "CookieFull":"https://cdn.discordapp.com/attachments/759882556744663040/984249422017863770/unknown.png",
+    "Deadass":"https://pbs.twimg.com/media/FY9v7TpXgAA6Pn8.png",
 }
